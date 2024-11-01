@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIR QUALITY</title>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: burlywood;
+}
+@keyframes rainbow {
+            0% { color: red; }
+            14% { color: orange; }
+            28% { color: yellow; }
+            42% { color: green; }
+            57% { color: blue; }
+            71% { color: indigo; }
+            85% { color: violet; }
+            100% { color: red; }
+        }
+
+        /* Apply the rainbow animation to the title */
+        h1.rainbow-title {
+            font-size: 36px;
+            animation: rainbow 5s linear infinite;
+        }
+
+.background {
+    background-image: url("static/image/sky4.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu {
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent white background */
+    color: #e8f7cb68;
+    padding: 15px;
+    margin: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(123, 55, 55, 0.2);
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+.menu li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.menu a {
+    color: rgb(1, 12, 12);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: large;
+}
+
+.logo {
+    width: 120px;
+    height: 80px;
+}
+
+.centered-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px; /* Add space between the cards */
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.7); /* Transparent white background */
+    border-radius: 20px; /* Rounded corners */
+    padding: 3%;
+    text-align: center;
+    box-shadow: 0px 3px 6px rgba(150, 64, 64, 0.1);
+    cursor: pointer;
+    width: 350px; /* Increased width */
+    height: 150px; /* Increased height */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(204, 211, 162, 0.2);
+}
+
+.card h2 {
+    margin: 0;
+    color:grey;
+    text-align: justify;
+    justify-content: center;
+    font-size: 44px; /* Adjust the font size */
+}
+
+.card a {
+    text-decoration: none; /* Remove underline from links within cards */
+    color: #333; /* Set link color */
+}
+/* Your existing styles */
+
+.hidden-content {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+/* ... (previous styles) ... */
+
+.hidden-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+    width: 350px;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #e1a48c; /* Custom color */
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+}
+
+.close-button:hover {
+    color: #c78d5a; /* Custom color on hover */
+}
+
+
+/* ... (remaining styles) ... */
+
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <img src="{{url_for('static',filename='image/aqi-logo.webp')}}" alt="Logo" class="logo">
+        <h1 class="rainbow-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Air Quality Index Prediction</h1>
+        <ul>
+            <li><a href="{{ url_for('air') }}">HOME</a></li>
+            <li><a href="{{ url_for('air') }}" id="aboutLink">ABOUT </a></li>
+            <li><a href="{{ url_for('location')}}">PREDICT</a></li>
+        </ul>
+    </div>
+    <div class="background">
+        <div class="centered-container">
+            <div class="card" id="aboutCard">
+                <h2>ABOUT</h2>
+            </div>
+            <div class="card" id="predictCard">
+                <a href="{{ url_for('location') }}"><h2 style="color: skyblue;">PREDICT</h2></a>
+            </div>
+        </div>
+    </div>
+     <div class="hidden-content" id="hiddenContent">
+    <div class="hidden-card">
+        <div class="close-button" id="closeButton">Close</div>
+        <p>Air quality is a critical concern for public health and environmental sustainability. The increasing levels of pollutants in the atmosphere have led to adverse health effects and environmental degradation. Accurate prediction of air quality can play a vital role in mitigating these issues. In this project, we propose a novel approach to predict air quality using machine learning techniques.</p>
+<p>The project aims to develop a predictive model that estimates air quality indicators such as particulate matter (PM2.5 and PM10), ozone (O3), nitrogen dioxide (NO2), sulfur dioxide (SO2), and carbon monoxide (CO) levels. To achieve this, historical air quality data from monitoring stations will be collected and preprocessed. Feature engineering techniques will be employed to extract relevant temporal, meteorological, and geographical features that impact air quality.
+
+</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const aboutCard = document.getElementById("aboutCard");
+    const hiddenContent = document.getElementById("hiddenContent");
+    const closeButton = document.getElementById("closeButton");
+    const aboutLink = document.getElementById("aboutLink");
+
+    aboutCard.addEventListener("click", function() {
+        hiddenContent.style.display = "flex";
+    });
+
+    closeButton.addEventListener("click", function() {
+        hiddenContent.style.display = "none";
+    });
+
+    aboutLink.addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        hiddenContent.style.display = "flex";
+    });
+});
+
+</script>
+ 
+    
+</body>
+</html>

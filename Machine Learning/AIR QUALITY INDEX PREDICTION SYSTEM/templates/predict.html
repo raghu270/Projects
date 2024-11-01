@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PREDICTION</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const aboutLink = document.getElementById("aboutLink");
+    const studentCards = document.getElementById("studentCards");
+
+    aboutLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        studentCards.classList.toggle("hidden");
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+});
+
+    </script>
+    <style>
+        /* styles.css */
+body, html { 
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background:  url("static/image/sky3.png") no-repeat center center fixed;
+    background-size: cover;
+}
+.menu {
+    background-color: #ffffff7b; /* Set the background color to white */
+    color: #e8f7cb; /* Set the text color to a dark color */
+    padding: 15px;
+    margin: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(123, 55, 55, 0.2);
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+.menu li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.menu a {
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logo {
+    width: 50px;
+    height: 40px;
+}
+
+.container {
+    max-width: 350px;
+    margin: auto;
+    padding-top: 20px;
+    margin-top: 70px;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    background-color:#ffffff7b;;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    padding: 20px;
+    color: #ffffff7b;;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    background-color: #007bff;
+    margin-bottom: 10px;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+/* Your existing styles */
+/* Your existing styles */
+
+.student-cards {
+    display: flex;
+    justify-content: center; /* Center the cards horizontally */
+    margin-top: 20px;
+}
+
+.student-card {
+    background: linear-gradient(to bottom, #f7f7f7, #e0e0e0);
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: calc(20% - 20px); /* Adjust the width based on the number of cards */
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    margin: 0 10px;
+    margin-top: 150px; /* Add spacing between cards */
+}
+
+.student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #e0e0e0, #f7f7f7);
+}
+
+.student-card img {
+    max-width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.student-card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.student-card p {
+    color: #777;
+}
+/* Your existing styles */
+
+
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <img src="{{url_for('static',filename='image/aqi-logo.webp')}}" alt="Logo" class="logo">
+        <ul>
+            <li><a href="{{url_for('air')}}">HOME</a></li>
+            <li><a href="about.html" id="aboutLink">ABOUT US</a></li>
+            <li><a href="{{url_for('location')}}">PREDICT</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <form action="/result" method="post">
+                   <!-- <label for="ml-classifier">ML Classifier</label>
+                    <select id="ml-classifier" class="form-control">
+                        <option value="Decision Tree">Decision Tree</option>
+                        <option value="Linear Regression">Linear Regression</option>
+                        <option value="Random Forest">Random Forest</option>
+                    </select>-->
+                    <label for="locationinput">LOCATION</label>
+                    <input type="text" id="locationinput" name="locationinput1" value="{{state}}" class="form-control" /><br><br>
+                   <!-- <datalist id="location">
+                        <option value="Delhi">
+                        <option value="Haryana">
+                        <option value="Uttar_Pradesh">
+                        <option value="Maharashtra">
+                        <option value="Karnataka">
+                        <option value="Madhya Pradesh">
+                        <option value="West_Bengal">
+                        <option value="Rajasthan">
+                        <option value="Punjab">
+                        <option value="Telangana">
+                        <option value="Bihar">
+                        <option value="TamilNadu">
+                        <option value="Gujarat">
+                        <option value="Andhra_Pradesh">
+                        <option value="Kerala">
+                        <option value="Odisha">
+                        <option value="Jharkhand">
+                        <option value="Assam">
+                        <option value="Chandigarh">
+                        <option value="Meghalaya">
+                    </datalist>-->
+
+    
+                    <label for="pm2.5">PM2.5</label>
+                    <input type="number" step="any" id="pm2.5" name="pm2.5" min="0" value="{{poll_dict['pm2.5']}}" class="form-control" /><br><br>
+                    
+                    <label for="pm10">PM10</label>
+                    <input type="number" step="any" id="pm10" name="pm10" min="0" value="{{poll_dict['pm10']}}" class="form-control" /><br><br>
+                    <label for="so2">SO<sub>2</sub></label>
+                    <input type="number" step="any" id="so2"  name="so2" min="0" value="{{poll_dict['so2']}}" class="form-control" /><br><br>
+                    <label for="co">CO</label>
+                    <input type="number" step="any" id="co"  name="co" min="0" value="{{poll_dict['co']}}" class="form-control" /><br><br>
+                    <label for="ozone">OZONE</label>
+                    <input type="number" step="any" id="ozone"  name="ozone" min="0" value="{{poll_dict['ozone']}}" class="form-control" /><br><br>
+                    <label for="no2">NO<sub>2</sub></label>
+                    <input type="number" step="any" id="no2"  name="no2" min="0" value="{{poll_dict['no2']}}" class="form-control" /><br><br>
+                    <!--<label for="no">NO</label>
+                    <input type="number" step="any" id="no"  name="no" min="0" class="form-control" />
+            
+                    <label for="nox">NO<sub>X</sub></label>
+                    <input type="number" step="any" id="nox"  name="nox" min="0" class="form-control" />
+                    <label for="nh3">NH<sub>3</sub></label>
+                    <input type="number" step="any" id="nh3"  name="nh3" min="0" class="form-control" />
+           
+                    
+                
+                    <label for="benzene">BENZENE</label>
+                    <input type="number" step="any" id="benzene" name="benzene" min="0"  class="form-control" />
+                    <label for="toulene">TOULENE</label>
+                    <input type="number" step="any" id="toulene"  name="toulene" min="0" class="form-control" />
+                    <label for="xylene">XYLENE</label>
+                    <input type="number" step="any" id="xylene"  name="xylene" min="0" class="form-control" />-->
+    
+                   
+                    <button class="btn btn-primary">Predict</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+
+</body>
+</html>

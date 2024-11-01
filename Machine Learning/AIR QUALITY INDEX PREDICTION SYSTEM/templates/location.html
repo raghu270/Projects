@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Entry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background:url("static/image/india_2.jpg") no-repeat center center fixed;
+
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+        }
+        .menu {
+    background-color: #ffffff7b; /* Set the background color to white */
+    color: #e8f7cb; /* Set the text color to a dark color */
+    padding: 15px;
+    margin: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(123, 55, 55, 0.2);
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+.menu li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.menu a {
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logo {
+    width: 50px;
+    height: 40px;
+}
+
+
+        h1 {
+            color: #333;
+        }
+        
+        .location-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .location-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .submit-btn {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <img src="{{url_for('static',filename='image/aqi-logo.webp')}}" alt="Logo" class="logo">
+        <ul>
+            <li><a href="{{url_for('air')}}">HOME</a></li>
+        </ul>
+    </div><br><br><br><br><br><br><br>
+    <div class="container">
+        <h1>Enter The Location</h1>
+        <form action ="/predict" method="post" class="location-form">
+            <input type="text" class="location-input" name="locationinput" list="location" placeholder="Enter the location" required>
+            <datalist id="location">
+                <option value="Delhi">
+                <option value="Haryana">
+                <option value="Uttar_Pradesh">
+                <option value="Maharashtra">
+                <option value="Karnataka">
+                <option value="Madhya Pradesh">
+                <option value="West_Bengal">
+                <option value="Rajasthan">
+                <option value="Punjab">
+                <option value="Telangana">
+                <option value="Bihar">
+                <option value="TamilNadu">
+                <option value="Gujarat">
+                <option value="Andhra_Pradesh">
+                <option value="Kerala">
+                <option value="Odisha">
+                <option value="Jharkhand">
+                <option value="Assam">
+                <option value="Chandigarh">
+                <option value="Meghalaya">
+            </datalist>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
